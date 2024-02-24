@@ -1,26 +1,21 @@
+import 'package:dailymood/form.dart';
 import 'package:dailymood/timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MaterialApp(
+    title: 'Daily Mood',
+    theme: ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      useMaterial3: true,
+    ),
+    home: const MyHomePage(title: 'Daily Mood'),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Daily Mood',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Daily Mood'),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -32,37 +27,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
-      length: 2,
-      child:Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.home)
-              ),
-              Tab(
-                icon: Icon(Icons.calendar_today)
-              )
+        initialIndex: 0,
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text(widget.title),
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.home)),
+                Tab(icon: Icon(Icons.calendar_today))
+              ],
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Timeline()),
+              Placeholder()
             ],
           ),
-        ),
-        body: const TabBarView(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Timeline()
-            ),
-            Placeholder()
-          ],
-        )
-      )
-    );
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => takePicture(),
+          ),
+        ));
   }
 }
