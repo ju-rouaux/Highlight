@@ -11,7 +11,7 @@ enum Mood {
 }
 
 extension MoodExtension on Mood {
-  String get emoji {
+  String get toEmoji {
     switch (this) {
       case Mood.happy:
         return '😄';
@@ -31,6 +31,31 @@ extension MoodExtension on Mood {
         return '😍';
       case Mood.bitter:
         return '😒';
+      default:
+        return '';
+    }
+  }
+
+  String get toText {
+    switch (this) {
+      case Mood.happy:
+        return "Happy";
+      case Mood.neutral:
+        return "Neutral";
+      case Mood.sad:
+        return "Sad";
+      case Mood.bored:
+        return "Bored";
+      case Mood.angry:
+        return "Angry";
+      case Mood.anxious:
+        return "Anxious";
+      case Mood.thrilled:
+        return "Thrilled";
+      case Mood.inLove:
+        return "In love";
+      case Mood.bitter:
+        return "Bitter";
       default:
         return '';
     }

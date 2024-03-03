@@ -74,7 +74,7 @@ class _PictureFrameState extends State<PictureFrame> {
         top: 16.0,
         right: 16.0,
         child: Text(
-          widget.pictureModel.mood.emoji,
+          widget.pictureModel.mood.toEmoji,
           style: TextStyle(fontSize: 40),
         ),
       )

@@ -73,6 +73,7 @@ class _FormRootState extends State<FormRoot> {
                   icon: Icon(Icons.arrow_back),
 
                   onPressed: () {
+                    FocusScope.of(context).unfocus();
                     setState(() {
                       _pageController.previousPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
                     });
@@ -99,6 +100,7 @@ class _FormRootState extends State<FormRoot> {
 
                   onPressed: () {
                     if(!_imageAdded) return;
+                    FocusScope.of(context).unfocus();
                     setState(() {
                       _pageController.nextPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
                     });

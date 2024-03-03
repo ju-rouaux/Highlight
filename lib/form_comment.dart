@@ -12,14 +12,25 @@ class FormComment extends StatefulWidget {
 class FormCommentState extends State<FormComment> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Entry>(
-      builder: (context, entry, child) {
-        if (entry.image != null) {
-          return Image.file(entry.image!);
-        } else {
-          return Placeholder();
-        }
-      },
+    return Column(
+      children: [
+        TextField(
+          onChanged: (value) {
+            Provider.of<Entry>(context, listen: false).updateTitle(value);
+          },
+          decoration: InputDecoration(
+            labelText: 'Write a short title!',
+          ),
+        ),
+        TextField(
+          onChanged: (value) {
+            Provider.of<Entry>(context, listen: false).updateDescription(value);
+          },
+          decoration: InputDecoration(
+            labelText: 'Develop your thoughts here.',
+          ),
+        ),
+      ],
     );
   }
 }
