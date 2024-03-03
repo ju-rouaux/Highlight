@@ -1,4 +1,5 @@
 import 'package:dailymood/form.dart';
+import 'package:dailymood/formv2.dart';
 import 'package:dailymood/timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -53,7 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           // TODO TEMPORARY, REMOVE LATER
           floatingActionButton: FloatingActionButton(
-            onPressed: () => takePicture(),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FormV2()),
+              );
+            },
           ),
         ));
   }

@@ -14,7 +14,7 @@ class _TimelineState extends State<Timeline> {
     return ListView.builder(
       itemBuilder: (context, index) {
         return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20), child: PicFrame());
+            padding: EdgeInsets.symmetric(vertical: 20), child: PictureFrame());
       },
     );
   }

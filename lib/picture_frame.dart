@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PicFrame extends StatefulWidget {
-  const PicFrame({super.key});
+class PictureFrame extends StatefulWidget {
+  const PictureFrame({super.key});
 
   @override
-  State<PicFrame> createState() => _PicFrameState();
+  State<PictureFrame> createState() => _PictureFrameState();
 }
 
-class _PicFrameState extends State<PicFrame> {
+class _PictureFrameState extends State<PictureFrame> {
   // Setup
   final double borderRadius = 30;
 
