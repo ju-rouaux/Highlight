@@ -50,15 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Placeholder()
             ],
           ),
-          // TODO TEMPORARY, REMOVE LATER
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FormRoot()),
-              );
-            },
-          ),
         ));
   }
 }

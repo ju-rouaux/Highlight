@@ -11,14 +11,18 @@ class FormValidation extends StatefulWidget {
 }
 
 class _FormValidationState extends State<FormValidation> {
+
   @override
   Widget build(BuildContext context) {
+    Entry entry = Provider.of<Entry>(context, listen: false);
+
     return Column(
       children: [
-        PictureFrame(pictureModel: Provider.of<Entry>(context, listen: false)),
+        PictureFrame(pictureModel: entry),
         ElevatedButton(
           onPressed: () {
-            //TODO SAVE ENTRY
+            entry.updateDate(DateTime.now());
+            entry.saveEntry();
             Navigator.pop(context);
           },
           child: Text("Confirmer ?")

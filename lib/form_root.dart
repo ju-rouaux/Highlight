@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FormRoot extends StatefulWidget {
-  const FormRoot({super.key});
+  const FormRoot({super.key, this.entry});
+
+  final Entry? entry;
 
   @override
   State<FormRoot> createState() => _FormRootState();
@@ -23,6 +25,7 @@ class _FormRootState extends State<FormRoot> {
 
   @override
   Widget build(BuildContext context) {
+    _imageAdded = widget.entry != null;
 
     return Scaffold(
 
@@ -36,7 +39,7 @@ class _FormRootState extends State<FormRoot> {
           Expanded(
 
             child: ChangeNotifierProvider(
-              create: (context) => Entry(),
+              create: (context) => widget.entry ?? Entry(),
 
               child: PageView(
                 controller: _pageController,
