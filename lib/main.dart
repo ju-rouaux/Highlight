@@ -1,8 +1,6 @@
-import 'package:dailymood/form.dart';
-import 'package:dailymood/formv2.dart';
+import 'package:dailymood/form_root.dart';
 import 'package:dailymood/timeline.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FormV2()),
+                MaterialPageRoute(builder: (context) => FormRoot()),
               );
             },
           ),

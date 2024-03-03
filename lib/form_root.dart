@@ -2,27 +2,28 @@ import 'package:dailymood/form_comment.dart';
 import 'package:dailymood/form_mood.dart';
 import 'package:dailymood/form_picture.dart';
 import 'package:dailymood/form_validation.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dailymood/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
-class FormV2 extends StatefulWidget {
-  const FormV2({super.key});
+class FormRoot extends StatefulWidget {
+  const FormRoot({super.key});
 
   @override
-  State<FormV2> createState() => _FormV2State();
+  State<FormRoot> createState() => _FormRootState();
 }
 
-class _FormV2State extends State<FormV2> {
+class _FormRootState extends State<FormRoot> {
 
   final PageController _pageController = PageController();
 
-  int _currentPage = 1;
+  int _currentPage = 0;
   static const int maxPages = 4;
-  
+  bool _imageAdded = false;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
       appBar: AppBar(
@@ -33,35 +34,50 @@ class _FormV2State extends State<FormV2> {
         children: [
 
           Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (int page) {
-                setState(() {
-                  _currentPage = page;
-                });
-              },
 
-              children: const [
-                FormPicture(),
-                FormComment(),
-                FormMood(),
-                FormValidation()
-              ],
+            child: ChangeNotifierProvider(
+              create: (context) => Entry(),
+
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page;
+                  });
+                },
+                physics: NeverScrollableScrollPhysics(),
+              
+                children: [
+                  
+                  FormPicture(onImageAdded: () => setState(() {
+                    _imageAdded = true;
+                  })),
+
+                  FormComment(),
+
+                  FormMood(),
+
+                  FormValidation()
+                ],
+              ),
             ),
           ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Opacity(
-                opacity: _currentPage != 0 ? 1 : 0,
+                opacity: (_currentPage != 0) ? 1 : 0,
                 child: IconButton(
                   icon: Icon(Icons.arrow_back),
+
                   onPressed: () {
                     setState(() {
                       _pageController.previousPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
                     });
                   },
+
                 ),
               ),
 
@@ -77,14 +93,17 @@ class _FormV2State extends State<FormV2> {
               ),
 
               Opacity(
-                opacity: _currentPage != maxPages-1 ? 1 : 0,
+                opacity: (_currentPage != maxPages-1) && _imageAdded ? 1 : 0,
                 child: IconButton(
                   icon: Icon(Icons.arrow_forward),
+
                   onPressed: () {
+                    if(!_imageAdded) return;
                     setState(() {
                       _pageController.nextPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
                     });
                   },
+
                 ),
               ),
             ],

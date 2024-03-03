@@ -1,4 +1,4 @@
-import 'package:dailymood/pic_frame.dart';
+import 'package:dailymood/picture_frame.dart';
 import 'package:flutter/material.dart';
 
 class Timeline extends StatefulWidget {
@@ -14,7 +14,7 @@ class _TimelineState extends State<Timeline> {
     return ListView.builder(
       itemBuilder: (context, index) {
         return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20), child: PictureFrame());
+            padding: EdgeInsets.symmetric(vertical: 20), child: Placeholder());
       },
     );
   }
