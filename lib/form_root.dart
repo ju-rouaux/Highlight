@@ -2,21 +2,20 @@ import 'package:dailymood/form_comment.dart';
 import 'package:dailymood/form_mood.dart';
 import 'package:dailymood/form_picture.dart';
 import 'package:dailymood/form_validation.dart';
-import 'package:dailymood/entry.dart';
+import 'package:dailymood/entries.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FormRoot extends StatefulWidget {
   const FormRoot({super.key, this.entry});
 
-  final Entry? entry;
+  final NewEntry? entry;
 
   @override
   State<FormRoot> createState() => _FormRootState();
 }
 
 class _FormRootState extends State<FormRoot> {
-
   final PageController _pageController = PageController();
 
   int _currentPage = 0;
@@ -24,23 +23,22 @@ class _FormRootState extends State<FormRoot> {
   bool _imageAdded = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _imageAdded = widget.entry != null;
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
-        title: Text("New input"),
+        title: const Text("New input"),
       ),
-
       body: Column(
         children: [
-
           Expanded(
-
             child: ChangeNotifierProvider(
-              create: (context) => widget.entry ?? Entry(),
-
+              create: (context) => widget.entry ?? NewEntry(),
               child: PageView(
                 controller: _pageController,
                 onPageChanged: (int page) {
@@ -48,45 +46,38 @@ class _FormRootState extends State<FormRoot> {
                     _currentPage = page;
                   });
                 },
-                physics: NeverScrollableScrollPhysics(),
-              
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  
-                  FormPicture(onImageAdded: () => setState(() {
-                    _imageAdded = true;
-                  })),
-
-                  FormComment(),
-
-                  FormMood(),
-
-                  FormValidation()
+                  FormPicture(
+                      onImageAdded: () => setState(() {
+                            _imageAdded = true;
+                          })),
+                  const FormComment(),
+                  const FormMood(),
+                  const FormValidation()
                 ],
               ),
             ),
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Opacity(
                 opacity: (_currentPage != 0) ? 1 : 0,
                 child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     FocusScope.of(context).unfocus();
                     setState(() {
-                      _pageController.previousPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
+                      _pageController.previousPage(
+                          duration: const Duration(milliseconds: 10),
+                          curve: Curves.ease);
                     });
                   },
-
                 ),
               ),
-
               Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -95,20 +86,19 @@ class _FormRootState extends State<FormRoot> {
                   ),
                 ),
               ),
-
               Opacity(
-                opacity: (_currentPage != maxPages-1) && _imageAdded ? 1 : 0,
+                opacity: (_currentPage != maxPages - 1) && _imageAdded ? 1 : 0,
                 child: IconButton(
-                  icon: Icon(Icons.arrow_forward),
-
+                  icon: const Icon(Icons.arrow_forward),
                   onPressed: () {
-                    if(!_imageAdded) return;
+                    if (!_imageAdded) return;
                     FocusScope.of(context).unfocus();
                     setState(() {
-                      _pageController.nextPage(duration: Duration(milliseconds: 10), curve: Curves.ease);
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 10),
+                          curve: Curves.ease);
                     });
                   },
-
                 ),
               ),
             ],
@@ -118,16 +108,15 @@ class _FormRootState extends State<FormRoot> {
     );
   }
 
-
   Widget buildPageIndicator(int index) {
-      return Container(
-        width: 8.0,
-        height: 8.0,
-        margin: EdgeInsets.symmetric(horizontal: 4.0),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _currentPage == index ? Colors.blue : Colors.grey,
-        ),
-      );
-    }
+    return Container(
+      width: 8.0,
+      height: 8.0,
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: _currentPage == index ? Colors.blue : Colors.grey,
+      ),
+    );
+  }
 }

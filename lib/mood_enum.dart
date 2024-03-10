@@ -8,6 +8,7 @@ enum Mood {
   thrilled,
   inLove,
   bitter,
+  none,
 }
 
 extension MoodExtension on Mood {
@@ -31,7 +32,7 @@ extension MoodExtension on Mood {
         return '😍';
       case Mood.bitter:
         return '😒';
-      default:
+      case Mood.none:
         return '';
     }
   }
@@ -56,8 +57,8 @@ extension MoodExtension on Mood {
         return "In love";
       case Mood.bitter:
         return "Bitter";
-      default:
-        return '';
+      case Mood.none:
+        return "Not specified";
     }
   }
 }

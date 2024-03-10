@@ -1,5 +1,7 @@
-import 'package:dailymood/entry.dart';
+import 'package:dailymood/empty_picture.dart';
+import 'package:dailymood/entries.dart';
 import 'package:dailymood/form_root.dart';
+import 'package:dailymood/picture_details.dart';
 import 'package:dailymood/picture_frame.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,8 @@ class Timeline extends StatefulWidget {
 }
 
 class _TimelineState extends State<Timeline> {
-  List<Entry> entries = [];
+  List<FinalEntry> entries = [];
+  bool hasEntryForToday = false;
 
   @override
   void initState() {
@@ -21,31 +24,45 @@ class _TimelineState extends State<Timeline> {
 
   void loadEntries() async {
     entries = await Entry.entries();
+    hasEntryForToday = await Entry.todayEntryDoesExist();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    int offset = hasEntryForToday ? 0 : 1;
     return ListView.builder(
-      // TODO CHECK SI UNE ENTREE DU JOUR EST FAITE
-      itemCount: entries.length + 1, // +1 pour l'élément du haut
+      itemCount: entries.length + offset, // +1 pour l'élément du haut
       itemBuilder: (context, index) {
-        if (index == 0) {
-          return ElevatedButton(
-            onPressed: () {
-              Navigator.push(
+        if (index == 0 && !hasEntryForToday) {
+          return buildNewEntryButton(() => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FormRoot(entry: entries[0])),
-              );
-            }, 
-            child: Text("New entry")
-          ); // Customize this placeholder as needed
+                MaterialPageRoute(builder: (context) {
+                  return const FormRoot();
+                }),
+              ).then((_) {
+                loadEntries();
+              }));
         }
         return Padding(
-            padding: EdgeInsets.symmetric(vertical: 20), 
-            child: PictureFrame(pictureModel: entries[index - 1]));
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PictureDetails(entry: entries[index - offset]),
+                    ),
+                  );
+                },
+                child: PictureFrame(pictureModel: entries[index - offset])));
       },
     );
   }
+
+  Widget buildNewEntryButton(void Function() onTap) {
+    return GestureDetector(
+        onTap: onTap, child: const EmptyPicture(aspectRatio: 3 / 2));
+  }
 }
- 

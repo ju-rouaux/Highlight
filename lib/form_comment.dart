@@ -1,32 +1,28 @@
-import 'package:dailymood/entry.dart';
+import 'package:dailymood/entries.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FormComment extends StatefulWidget {
+class FormComment extends StatelessWidget {
   const FormComment({super.key});
 
-  @override
-  State<FormComment> createState() => FormCommentState();
-}
-
-class FormCommentState extends State<FormComment> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextField(
           onChanged: (value) {
-            Provider.of<Entry>(context, listen: false).updateTitle(value);
+            Provider.of<NewEntry>(context, listen: false).updateTitle(value);
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Write a short title!',
           ),
         ),
         TextField(
           onChanged: (value) {
-            Provider.of<Entry>(context, listen: false).updateDescription(value);
+            Provider.of<NewEntry>(context, listen: false)
+                .updateDescription(value);
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Develop your thoughts here.',
           ),
         ),
