@@ -43,7 +43,7 @@ class _FormPictureState extends State<FormPicture> {
   }
 
   void takePicture(BuildContext context) async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera, imageQuality: 50);
 
     if (image == null) return;
 

@@ -1,3 +1,4 @@
+import 'package:dailymood/calendar.dart';
 import 'package:dailymood/timeline.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Timeline()),
-              Placeholder()
+              Calendar(),
             ],
           ),
         ));
