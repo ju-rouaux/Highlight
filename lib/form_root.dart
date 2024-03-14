@@ -46,7 +46,7 @@ class _FormRootState extends State<FormRoot> {
                     _currentPage = page;
                   });
                 },
-                physics: const NeverScrollableScrollPhysics(),
+                physics: _imageAdded ? null : const NeverScrollableScrollPhysics(),
                 children: [
                   FormPicture(
                       onImageAdded: () => setState(() {
