@@ -12,10 +12,10 @@ class Entry {
 
   static Future<Database> get database async {
     _database ??= await openDatabase(
-      join(await getDatabasesPath(), 'dailymood_test02.db'),
+      join(await getDatabasesPath(), 'dailymood_test04.db'),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE entries(id INTEGER PRIMARY KEY, date TEXT, image TEXT, title TEXT, description TEXT, mood TEXT)",
+          "CREATE TABLE entries(id TEXT PRIMARY KEY, date TEXT, image TEXT, title TEXT, description TEXT, mood TEXT)",
         );
       },
       version: 1,
@@ -51,9 +51,7 @@ class Entry {
     return false;
   }
 
-  static Future<void> deleteEntry(int? id) async {
-    if (id == null) return;
-
+  static Future<void> deleteEntry(String id) async {
     final db = await database;
 
     await db.delete(
@@ -66,7 +64,7 @@ class Entry {
 
 // Entry whith no listener, cannot be modified after creation
 class FinalEntry {
-  final int? id;
+  final String id;
   final DateTime date;
   final File image;
   final String title;
@@ -85,7 +83,7 @@ class FinalEntry {
         mood = newEntry.mood;
 
   FinalEntry.onlyImage(File img)
-      : id = null,
+      : id = "",
         date = DateTime.now(),
         image = img,
         title = "",
@@ -95,7 +93,7 @@ class FinalEntry {
 
 // Entry with listener for UI, can be modified after creation
 class NewEntry extends ChangeNotifier {
-  int? _id;
+  String _id = DateTime.now().toIso8601String().split('T')[0].replaceAll("-", "");
   DateTime _date = DateTime.now();
   File? _image;
   String _title = "";
@@ -108,8 +106,20 @@ class NewEntry extends ChangeNotifier {
   String get description => _description;
   Mood get mood => _mood;
 
+  NewEntry();
+
+  NewEntry.fromFinalEntry(FinalEntry entry)
+      : _id = entry.id,
+        _date = entry.date,
+        _image = entry.image,
+        _title = entry.title,
+        _description = entry.description,
+        _mood = entry.mood;
+
+  /// Mets à jour intrasèquement l'id
   void updateDate(DateTime newDate) {
     _date = newDate;
+    _id = newDate.toIso8601String().split('T')[0].replaceAll("-", "");
     notifyListeners();
   }
 

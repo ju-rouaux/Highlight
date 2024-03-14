@@ -40,9 +40,7 @@ class _TimelineState extends State<Timeline> {
                 MaterialPageRoute(builder: (context) {
                   return const FormRoot();
                 }),
-              ).then((_) {
-                loadEntries();
-              }));
+              ).then((_) => loadEntries()));
         }
         return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -54,7 +52,7 @@ class _TimelineState extends State<Timeline> {
                       builder: (context) =>
                           PictureDetails(entry: entries[index - offset]),
                     ),
-                  );
+                  ).then((_) => loadEntries());
                 },
                 child: PictureFrame(pictureModel: entries[index - offset])));
       },
