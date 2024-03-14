@@ -11,8 +11,14 @@ class FormMood extends StatefulWidget {
 }
 
 class _FormMoodState extends State<FormMood> {
+  Mood _selectedMood = Mood.none;
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _selectedMood = Provider.of<NewEntry>(context, listen: false).mood;
+    });
+
     return GridView.count(
       crossAxisCount: 3,
       children: Mood.values.map((mood) => buildMoodButton(mood)).toList(),
@@ -20,19 +26,33 @@ class _FormMoodState extends State<FormMood> {
   }
 
   Widget buildMoodButton(Mood mood) {
+    final isSelected = mood == _selectedMood;
+
     return GestureDetector(
-      onTap: () =>
-          Provider.of<NewEntry>(context, listen: false).updateMood(mood),
+      onTap: () {
+        setState(() {
+          _selectedMood = mood;
+        });
+        Provider.of<NewEntry>(context, listen: false).updateMood(mood);
+      },
       child: Column(
         children: [
           Stack(alignment: Alignment.center, children: [
             Container(
               width: 64.0,
               height: 64.0,
-              margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-              decoration: const BoxDecoration(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.grey,
+                border: Border.all(
+                  color: isSelected ? Colors.blue : Colors.transparent,
+                  width: 5.0,
+                ),
+              ),
+              child: Container(
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.grey),
               ),
             ),
             Text(mood.toEmoji, style: const TextStyle(fontSize: 40))
