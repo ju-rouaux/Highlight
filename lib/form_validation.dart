@@ -14,7 +14,7 @@ class _FormValidationState extends State<FormValidation> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Text(
@@ -24,7 +24,7 @@ class _FormValidationState extends State<FormValidation> {
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Consumer<NewEntry>(
               builder: (BuildContext context, NewEntry entry, Widget? child) {
             if (entry.image != null) {
@@ -32,7 +32,7 @@ class _FormValidationState extends State<FormValidation> {
             }
             return const Placeholder(); // This is not supposed to be displayed under normal usage.
           }),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ElevatedButton(
               onPressed: () {
                 NewEntry entry = Provider.of<NewEntry>(context, listen: false);

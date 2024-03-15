@@ -35,12 +35,15 @@ class _TimelineState extends State<Timeline> {
       itemCount: entries.length + offset, // +1 pour l'élément du haut
       itemBuilder: (context, index) {
         if (index == 0 && !hasEntryForToday) {
-          return buildNewEntryButton(() => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return const FormRoot();
-                }),
-              ).then((_) => loadEntries()));
+          return Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: buildNewEntryButton(() => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return const FormRoot();
+                  }),
+                ).then((_) => loadEntries())),
+          );
         }
         return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),

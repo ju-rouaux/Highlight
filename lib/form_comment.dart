@@ -14,7 +14,7 @@ class FormComment extends StatelessWidget {
         text: Provider.of<NewEntry>(context, listen: false).description);
 
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -25,7 +25,7 @@ class FormComment extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             AspectRatio(
               aspectRatio: 3 / 4,
               child: Stack(
@@ -56,14 +56,14 @@ class FormComment extends StatelessWidget {
                           maxLength: 25,
 
                           // Entry style
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white, // Change text color as needed
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
 
                           // Field style
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: "Tap here to write a short title!",
                               hintStyle: TextStyle(
@@ -83,7 +83,7 @@ class FormComment extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Larger text field
             TextField(

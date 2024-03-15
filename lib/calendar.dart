@@ -32,9 +32,7 @@ class _CalendarState extends State<Calendar> {
       focusedDay: DateTime.now(),
       firstDay: DateTime.utc(2020),
       lastDay: DateTime.utc(2060),
-      headerStyle: HeaderStyle(
-        formatButtonVisible: false
-      ),
+      headerStyle: const HeaderStyle(formatButtonVisible: false),
 
       onDaySelected: (selectedDay, focusedDay) {
         FinalEntry? entry = entries
@@ -42,9 +40,10 @@ class _CalendarState extends State<Calendar> {
 
         if (entry != null) {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PictureDetails(entry: entry)));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PictureDetails(entry: entry)))
+              .then((value) => loadEntries());
         }
       },
 
@@ -60,7 +59,7 @@ class _CalendarState extends State<Calendar> {
               right: 0,
               child: Text(
                 entry.mood == Mood.none ? "●" : entry.mood.toEmoji,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             );
           } else {

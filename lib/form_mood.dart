@@ -20,7 +20,7 @@ class _FormMoodState extends State<FormMood> {
     });
 
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Text(
@@ -30,7 +30,7 @@ class _FormMoodState extends State<FormMood> {
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: GridView.count(
               crossAxisCount: 3,

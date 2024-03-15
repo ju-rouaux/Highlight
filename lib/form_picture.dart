@@ -30,7 +30,7 @@ class _FormPictureState extends State<FormPicture> {
       return Column(
         children: [
           PictureFrame(pictureModel: FinalEntry.onlyImage(image!)),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => takePicture(context),
             child: const Text("Take a new picture"),
@@ -51,7 +51,7 @@ class _FormPictureState extends State<FormPicture> {
     }
 
     return Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Text(
@@ -61,7 +61,7 @@ class _FormPictureState extends State<FormPicture> {
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             image == null ? buildNoPicture() : buildWithPicture(),
           ],
         ));
