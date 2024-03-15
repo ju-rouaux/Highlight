@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 enum Mood {
   happy,
   neutral,
@@ -37,28 +40,28 @@ extension MoodExtension on Mood {
     }
   }
 
-  String get toText {
+  String toLocalizedString(BuildContext context) {
     switch (this) {
       case Mood.happy:
-        return "Happy";
+        return AppLocalizations.of(context)!.happy;
       case Mood.neutral:
-        return "Neutral";
+        return AppLocalizations.of(context)!.neutral;
       case Mood.sad:
-        return "Sad";
+        return AppLocalizations.of(context)!.sad;
       case Mood.bored:
-        return "Bored";
+        return AppLocalizations.of(context)!.bored;
       case Mood.angry:
-        return "Angry";
+        return AppLocalizations.of(context)!.angry;
       case Mood.anxious:
-        return "Anxious";
+        return AppLocalizations.of(context)!.anxious;
       case Mood.thrilled:
-        return "Thrilled";
+        return AppLocalizations.of(context)!.thrilled;
       case Mood.inLove:
-        return "In love";
+        return AppLocalizations.of(context)!.inLove;
       case Mood.bitter:
-        return "Bitter";
+        return AppLocalizations.of(context)!.bitter;
       case Mood.none:
-        return "Not specified";
+        return AppLocalizations.of(context)!.notSpecified;
     }
   }
 }

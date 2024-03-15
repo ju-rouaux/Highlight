@@ -1,8 +1,8 @@
-import 'package:dailymood/empty_picture.dart';
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/form_root.dart';
-import 'package:dailymood/picture_details.dart';
-import 'package:dailymood/picture_frame.dart';
+import 'package:highlight/empty_picture.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/form_root.dart';
+import 'package:highlight/picture_details.dart';
+import 'package:highlight/picture_frame.dart';
 import 'package:flutter/material.dart';
 
 class Timeline extends StatefulWidget {

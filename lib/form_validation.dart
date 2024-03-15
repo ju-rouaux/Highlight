@@ -1,7 +1,8 @@
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/picture_frame.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/picture_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FormValidation extends StatefulWidget {
   const FormValidation({super.key});
@@ -18,7 +19,7 @@ class _FormValidationState extends State<FormValidation> {
       child: Column(
         children: [
           Text(
-            "Last step — Confirmation",
+            AppLocalizations.of(context)!.lastStep,
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 20,
@@ -40,7 +41,7 @@ class _FormValidationState extends State<FormValidation> {
                 entry.saveEntry();
                 Navigator.pop(context);
               },
-              child: const Text("Confirm?"))
+              child: Text(AppLocalizations.of(context)!.confirmQuestion))
         ],
       ),
     );

@@ -1,16 +1,30 @@
-import 'package:dailymood/calendar.dart';
-import 'package:dailymood/timeline.dart';
+import 'package:highlight/calendar.dart';
+import 'package:highlight/timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting();
 
   runApp(MaterialApp(
-    title: 'Daily Mood',
+    title: 'Highlight',
     theme: ThemeData.light(),
     darkTheme: ThemeData.dark(),
     themeMode: ThemeMode.system, // Use system theme
-    home: const MyHomePage(title: 'Daily Mood'),
+    localizationsDelegates: const [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: const [
+      Locale('en'), // English
+      Locale('fr'), // French
+    ],
+    home: const MyHomePage(title: 'Highlight'),
   ));
 }
 

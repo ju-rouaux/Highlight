@@ -1,6 +1,6 @@
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/mood_enum.dart';
-import 'package:dailymood/picture_details.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/mood_enum.dart';
+import 'package:highlight/picture_details.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:collection/collection.dart';
@@ -28,12 +28,16 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
+    String locale = Localizations.localeOf(context).languageCode == 'fr'
+        ? 'fr_FR'
+        : 'en_US';
+
     return TableCalendar(
       focusedDay: DateTime.now(),
       firstDay: DateTime.utc(2020),
       lastDay: DateTime.utc(2060),
       headerStyle: const HeaderStyle(formatButtonVisible: false),
-
+      locale: locale,
       onDaySelected: (selectedDay, focusedDay) {
         FinalEntry? entry = entries
             .firstWhereOrNull((entry) => _isSameDay(entry.date, selectedDay));

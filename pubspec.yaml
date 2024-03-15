@@ -1,5 +1,5 @@
-name: dailymood
-description: "A new Flutter project."
+name: highlight
+description: "Take a daily picture to highlight the best moment of your day. A school project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -32,7 +32,11 @@ dependencies:
   provider: ^6.1.2
   sqflite: ^2.3.2
   dotted_border: ^2.1.0
-  intl: ^0.19.0
+  intl: any
+  table_calendar: ^3.0.9
+  collection: ^1.18.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +46,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
         - assets/images/

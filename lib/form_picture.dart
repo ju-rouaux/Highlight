@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:dailymood/empty_picture.dart';
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/picture_frame.dart';
+import 'package:highlight/empty_picture.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/picture_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FormPicture extends StatefulWidget {
   const FormPicture({super.key, required this.onImageAdded});
@@ -33,7 +34,7 @@ class _FormPictureState extends State<FormPicture> {
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => takePicture(context),
-            child: const Text("Take a new picture"),
+            child: Text(AppLocalizations.of(context)!.newPicture),
           ),
         ],
       );
@@ -55,7 +56,7 @@ class _FormPictureState extends State<FormPicture> {
         child: Column(
           children: [
             Text(
-              "First step — Take a picture",
+              AppLocalizations.of(context)!.firstStep,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 20,

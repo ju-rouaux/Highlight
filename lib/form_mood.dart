@@ -1,7 +1,8 @@
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/mood_enum.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/mood_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FormMood extends StatefulWidget {
   const FormMood({super.key});
@@ -24,7 +25,7 @@ class _FormMoodState extends State<FormMood> {
       child: Column(
         children: [
           Text(
-            "Third step — How are you feeling?",
+            AppLocalizations.of(context)!.thirdStep,
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 20,
@@ -75,7 +76,7 @@ class _FormMoodState extends State<FormMood> {
             ),
             Text(mood.toEmoji, style: const TextStyle(fontSize: 40))
           ]),
-          Text(mood.toText)
+          Text(mood.toLocalizedString(context))
         ],
       ),
     );

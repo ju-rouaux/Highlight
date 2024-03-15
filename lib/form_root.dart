@@ -1,10 +1,11 @@
-import 'package:dailymood/form_comment.dart';
-import 'package:dailymood/form_mood.dart';
-import 'package:dailymood/form_picture.dart';
-import 'package:dailymood/form_validation.dart';
-import 'package:dailymood/entries.dart';
+import 'package:highlight/form_comment.dart';
+import 'package:highlight/form_mood.dart';
+import 'package:highlight/form_picture.dart';
+import 'package:highlight/form_validation.dart';
+import 'package:highlight/entries.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FormRoot extends StatefulWidget {
   const FormRoot({super.key, this.entry});
@@ -32,9 +33,9 @@ class _FormRootState extends State<FormRoot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "New daily input",
-          style: TextStyle(fontSize: 18),
+        title: Text(
+          AppLocalizations.of(context)!.newInput,
+          style: const TextStyle(fontSize: 18),
         ),
       ),
       body: Column(

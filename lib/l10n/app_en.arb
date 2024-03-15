@@ -1,0 +1,38 @@
+{
+    "@@locale": "en",
+    "newInput": "New Highlight",
+    "firstStep": "First step - Take a picture",
+    "takeDailyPhoto": "Tap to take your daily photo!",
+    "newPicture": "Take a new picture",
+    "secondStep": "Second step — Write something",
+    "shortTitle": "Tap here to write a short title!",
+    "textPragraph": "Develop your thoughts...",
+    "thirdStep": "Third step - How are you feeling?",
+    "lastStep": "Last step — Confirmation",
+    "confirmQuestion": "Confirm?",
+    "mood": "Mood",
+    "happy": "Happy",
+    "neutral": "Neutral",
+    "sad": "Sad",
+    "bored": "Bored",
+    "angry": "Angry",
+    "anxious": "Anxious",
+    "thrilled": "Thrilled",
+    "inLove": "In love",
+    "bitter": "Bitter",
+    "notSpecified": "Not specified",
+    "details": "Details",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirmDeletion": "Confirm deletion",
+    "warnDeletion": "Are you sure you want to delete?",
+    "date": "{date}",
+    "@date": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    }
+}

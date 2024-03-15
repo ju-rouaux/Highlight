@@ -1,8 +1,8 @@
-import 'package:dailymood/entries.dart';
-import 'package:dailymood/form_root.dart';
-import 'package:dailymood/mood_enum.dart';
+import 'package:highlight/entries.dart';
+import 'package:highlight/form_root.dart';
+import 'package:highlight/mood_enum.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import the intl package
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PictureDetails extends StatefulWidget {
   const PictureDetails({super.key, required this.entry});
@@ -18,7 +18,7 @@ class _PictureDetailsState extends State<PictureDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Details"),
+        title: Text(AppLocalizations.of(context)!.details),
         actions: [
           // Delete
           if (DateTime.now()
@@ -44,21 +44,21 @@ class _PictureDetailsState extends State<PictureDetails> {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: const Text('Confirm deletion'),
-                    content: const Text('Are you sure you want to delete?'),
+                    title: Text(AppLocalizations.of(context)!.confirmDeletion),
+                    content: Text(AppLocalizations.of(context)!.warnDeletion),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Cancel'),
+                        child: Text(AppLocalizations.of(context)!.cancel),
                       ),
                       TextButton(
                         onPressed: () {
                           Entry.deleteEntry(widget.entry.id);
                           Navigator.popUntil(context, (route) => route.isFirst);
                         },
-                        child: const Text('Delete'),
+                        child: Text(AppLocalizations.of(context)!.delete),
                       ),
                     ],
                   );
@@ -88,7 +88,7 @@ class _PictureDetailsState extends State<PictureDetails> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Mood: ${widget.entry.mood.toText} - ${DateFormat('dd/MM/y').format(widget.entry.date)}",
+                      "${AppLocalizations.of(context)!.mood}: ${widget.entry.mood.toLocalizedString(context)} - ${AppLocalizations.of(context)!.date(widget.entry.date)}",
                       style: const TextStyle(fontSize: 14),
                     ),
                   ),

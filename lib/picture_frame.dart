@@ -1,5 +1,5 @@
-import 'package:dailymood/mood_enum.dart';
-import 'package:dailymood/entries.dart';
+import 'package:highlight/mood_enum.dart';
+import 'package:highlight/entries.dart';
 import 'package:flutter/material.dart';
 
 class PictureFrame extends StatelessWidget {

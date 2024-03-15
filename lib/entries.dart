@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dailymood/mood_enum.dart';
+import 'package:highlight/mood_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -12,7 +12,7 @@ class Entry {
 
   static Future<Database> get database async {
     _database ??= await openDatabase(
-      join(await getDatabasesPath(), 'dailymood_test04.db'),
+      join(await getDatabasesPath(), 'highlight_test04.db'),
       onCreate: (db, version) {
         return db.execute(
           "CREATE TABLE entries(id TEXT PRIMARY KEY, date TEXT, image TEXT, title TEXT, description TEXT, mood TEXT)",

@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "dailymood" "\0"
+            VALUE "CompanyName", "fr.masterinfo" "\0"
+            VALUE "FileDescription", "highlight" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "dailymood" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "dailymood.exe" "\0"
-            VALUE "ProductName", "dailymood" "\0"
+            VALUE "InternalName", "highlight" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 fr.masterinfo. All rights reserved." "\0"
+            VALUE "OriginalFilename", "highlight.exe" "\0"
+            VALUE "ProductName", "highlight" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

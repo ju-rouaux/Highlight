@@ -1,4 +1,4 @@
-package com.example.dailymood
+package fr.masterinfo.highlight
 
 import io.flutter.embedding.android.FlutterActivity
 

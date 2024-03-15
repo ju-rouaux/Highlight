@@ -1,4 +1,4 @@
-# dailymood
+# Highlight
 
 A new Flutter project.
 

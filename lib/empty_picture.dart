@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EmptyPicture extends StatelessWidget {
   const EmptyPicture({super.key, required this.aspectRatio});
@@ -24,16 +25,17 @@ class EmptyPicture extends StatelessWidget {
           child: Container(
             decoration: const BoxDecoration(
                 color: Colors.transparent), // Required for tap detection
-            child: const Center(
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 // Text and Icon
                 children: [
-                  Icon(Icons.add_circle_outline_sharp, size: 50.0),
+                  const Icon(Icons.add_circle_outline_sharp, size: 50.0),
                   Text(
-                    "Tap to take you daily photo!",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    AppLocalizations.of(context)!.takeDailyPhoto,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   )
                 ],
               ),
