@@ -45,6 +45,7 @@ class _FormRootState extends State<FormRoot> {
               child: PageView(
                 controller: _pageController,
                 onPageChanged: (int page) {
+                  FocusScope.of(context).unfocus();
                   setState(() {
                     _currentPage = page;
                   });
@@ -71,7 +72,6 @@ class _FormRootState extends State<FormRoot> {
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back),
                   onPressed: () {
-                    FocusScope.of(context).unfocus();
                     setState(() {
                       _pageController.previousPage(
                           duration: const Duration(milliseconds: 10),
