@@ -13,24 +13,36 @@ class FormValidation extends StatefulWidget {
 class _FormValidationState extends State<FormValidation> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Consumer<NewEntry>(
-            builder: (BuildContext context, NewEntry entry, Widget? child) {
-          if (entry.image != null) {
-            return PictureFrame(pictureModel: FinalEntry.fromNewEntry(entry));
-          }
-          return const Placeholder(); // This is not supposed to be displayed under normal usage.
-        }),
-        ElevatedButton(
-            onPressed: () {
-              NewEntry entry = Provider.of<NewEntry>(context, listen: false);
-              entry.updateDate(DateTime.now());
-              entry.saveEntry();
-              Navigator.pop(context);
-            },
-            child: const Text("Confirmer ?"))
-      ],
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(
+            "Last step — Confirmation",
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 20,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 10),
+          Consumer<NewEntry>(
+              builder: (BuildContext context, NewEntry entry, Widget? child) {
+            if (entry.image != null) {
+              return PictureFrame(pictureModel: FinalEntry.fromNewEntry(entry));
+            }
+            return const Placeholder(); // This is not supposed to be displayed under normal usage.
+          }),
+          SizedBox(height: 10),
+          ElevatedButton(
+              onPressed: () {
+                NewEntry entry = Provider.of<NewEntry>(context, listen: false);
+                entry.updateDate(DateTime.now());
+                entry.saveEntry();
+                Navigator.pop(context);
+              },
+              child: const Text("Confirm?"))
+        ],
+      ),
     );
   }
 }

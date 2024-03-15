@@ -19,9 +19,29 @@ class _FormMoodState extends State<FormMood> {
       _selectedMood = Provider.of<NewEntry>(context, listen: false).mood;
     });
 
-    return GridView.count(
-      crossAxisCount: 3,
-      children: Mood.values.map((mood) => buildMoodButton(mood)).toList(),
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(
+            "Third step — How are you feeling?",
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 20,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: Mood.values
+                  .where((mood) => mood != Mood.none)
+                  .map((mood) => buildMoodButton(mood))
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -46,13 +66,11 @@ class _FormMoodState extends State<FormMood> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected ? Colors.blue : Colors.transparent,
-                  width: 5.0,
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.transparent,
+                  width: 4.0,
                 ),
-              ),
-              child: Container(
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.grey),
               ),
             ),
             Text(mood.toEmoji, style: const TextStyle(fontSize: 40))

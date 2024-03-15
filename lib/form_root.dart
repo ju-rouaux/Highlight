@@ -32,7 +32,10 @@ class _FormRootState extends State<FormRoot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New input"),
+        title: const Text(
+          "New daily input",
+          style: TextStyle(fontSize: 18),
+        ),
       ),
       body: Column(
         children: [
@@ -46,7 +49,8 @@ class _FormRootState extends State<FormRoot> {
                     _currentPage = page;
                   });
                 },
-                physics: _imageAdded ? null : const NeverScrollableScrollPhysics(),
+                physics:
+                    _imageAdded ? null : const NeverScrollableScrollPhysics(),
                 children: [
                   FormPicture(
                       onImageAdded: () => setState(() {

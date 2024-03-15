@@ -26,24 +26,50 @@ class _FormPictureState extends State<FormPicture> {
       image = Provider.of<NewEntry>(context, listen: false).image;
     });
 
-    if (image == null) {
-      return GestureDetector(
-          onTap: () => takePicture(context),
-          child: const EmptyPicture(aspectRatio: 2 / 3));
-    } else {
+    Widget buildWithPicture() {
       return Column(
         children: [
           PictureFrame(pictureModel: FinalEntry.onlyImage(image!)),
+          SizedBox(height: 10),
           ElevatedButton(
-              onPressed: () => takePicture(context),
-              child: const Text("Take a new picture")),
+            onPressed: () => takePicture(context),
+            child: const Text("Take a new picture"),
+          ),
         ],
       );
     }
+
+    Widget buildNoPicture() {
+      return Column(
+        children: [
+          GestureDetector(
+            onTap: () => takePicture(context),
+            child: const EmptyPicture(aspectRatio: 2 / 3),
+          ),
+        ],
+      );
+    }
+
+    return Padding(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Text(
+              "First step — Take a picture",
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
+            ),
+            SizedBox(height: 10),
+            image == null ? buildNoPicture() : buildWithPicture(),
+          ],
+        ));
   }
 
   void takePicture(BuildContext context) async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera, imageQuality: 50);
+    XFile? image = await ImagePicker()
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
 
     if (image == null) return;
 
