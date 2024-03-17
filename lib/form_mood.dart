@@ -26,6 +26,7 @@ class _FormMoodState extends State<FormMood> {
         children: [
           Text(
             AppLocalizations.of(context)!.thirdStep,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 20,

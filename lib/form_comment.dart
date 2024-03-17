@@ -21,6 +21,7 @@ class FormComment extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.secondStep,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 20,

@@ -57,6 +57,7 @@ class _FormPictureState extends State<FormPicture> {
           children: [
             Text(
               AppLocalizations.of(context)!.firstStep,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 20,

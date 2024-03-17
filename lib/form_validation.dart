@@ -20,6 +20,7 @@ class _FormValidationState extends State<FormValidation> {
         children: [
           Text(
             AppLocalizations.of(context)!.lastStep,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
                 fontSize: 20,
