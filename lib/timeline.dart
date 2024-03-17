@@ -31,34 +31,39 @@ class _TimelineState extends State<Timeline> {
   @override
   Widget build(BuildContext context) {
     int offset = hasEntryForToday ? 0 : 1;
-    return ListView.builder(
-      itemCount: entries.length + offset, // +1 pour l'élément du haut
-      itemBuilder: (context, index) {
-        if (index == 0 && !hasEntryForToday) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: buildNewEntryButton(() => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return const FormRoot();
-                  }),
-                ).then((_) => loadEntries())),
-          );
-        }
-        return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          PictureDetails(entry: entries[index - offset]),
-                    ),
-                  ).then((_) => loadEntries());
-                },
-                child: PictureFrame(pictureModel: entries[index - offset])));
-      },
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: ListView.builder(
+          itemCount: entries.length + offset, // +1 pour l'élément du haut
+          itemBuilder: (context, index) {
+            if (index == 0 && !hasEntryForToday) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: buildNewEntryButton(() => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const FormRoot();
+                      }),
+                    ).then((_) => loadEntries())),
+              );
+            }
+            return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PictureDetails(entry: entries[index - offset]),
+                        ),
+                      ).then((_) => loadEntries());
+                    },
+                    child: PictureFrame(pictureModel: entries[index - offset])));
+          },
+        ),
+      ),
     );
   }
 

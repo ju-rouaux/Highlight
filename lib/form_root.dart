@@ -43,25 +43,28 @@ class _FormRootState extends State<FormRoot> {
           Expanded(
             child: ChangeNotifierProvider(
               create: (context) => widget.entry ?? NewEntry(),
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (int page) {
-                  FocusScope.of(context).unfocus();
-                  setState(() {
-                    _currentPage = page;
-                  });
-                },
-                physics:
-                    _imageAdded ? null : const NeverScrollableScrollPhysics(),
-                children: [
-                  FormPicture(
-                      onImageAdded: () => setState(() {
-                            _imageAdded = true;
-                          })),
-                  const FormComment(),
-                  const FormMood(),
-                  const FormValidation()
-                ],
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 300),
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (int page) {
+                    FocusScope.of(context).unfocus();
+                    setState(() {
+                      _currentPage = page;
+                    });
+                  },
+                  physics:
+                      _imageAdded ? null : const NeverScrollableScrollPhysics(),
+                  children: [
+                    FormPicture(
+                        onImageAdded: () => setState(() {
+                              _imageAdded = true;
+                            })),
+                    const FormComment(),
+                    const FormMood(),
+                    const FormValidation()
+                  ],
+                ),
               ),
             ),
           ),

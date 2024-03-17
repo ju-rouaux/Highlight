@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:highlight/calendar.dart';
 import 'package:highlight/timeline.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,22 @@ Future<void> main() async {
       Locale('en'), // English
       Locale('fr'), // French
     ],
-    home: const MyHomePage(title: 'Highlight'),
+    home: OrientationBuilder(
+      builder: (BuildContext context, Orientation orientation) {
+        // Block rotation if device too small
+        if (MediaQuery.of(context).size.shortestSide < 500) {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+        }
+        if (orientation == Orientation.landscape) {
+          return const MyHomePageWithoutTabs(title: 'Highlight');
+        } else {
+          return const MyHomePage(title: 'Highlight');
+        }
+      },
+    ),
   ));
 }
 
@@ -41,26 +57,56 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        initialIndex: 0,
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.home)),
-                Tab(icon: Icon(Icons.calendar_today))
-              ],
-            ),
-          ),
-          body: const TabBarView(
-            children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Timeline()),
-              Calendar(),
+      initialIndex: 0,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.home)),
+              Tab(icon: Icon(Icons.calendar_today))
             ],
           ),
-        ));
+        ),
+        body: const TabBarView(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Timeline(),
+            ),
+            Calendar(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyHomePageWithoutTabs extends StatelessWidget {
+  const MyHomePageWithoutTabs({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: const Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Timeline(),
+            ),
+          ),
+          Expanded(
+            child: Calendar(),
+          ),
+        ],
+      ),
+    );
   }
 }
